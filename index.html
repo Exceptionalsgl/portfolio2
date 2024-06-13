@@ -19,18 +19,33 @@
 
         <div id="username-section">
 
+            <label for="username">Enter your username: </label>
+            <input type="text" id="username" name="username">
+            <button id="start-quiz">Start Quiz</button>
+
 
         </div>
 
         <div id="quiz-section">
 
+            <p id="question"></p>
+            <div id="choices"></div>
+            <button id="next-question">Next Question</button>
+            <p id="feedback"></p>
+            <p>Score: <span id="score">0</span></p>
+
 
         </div>
 
-        <div id="score-section">
+        <div id="result-section">
+            <h2>Quiz Completed!</h2>
+            <p id="final-score"></p>
+            <button id="restart-quiz">Restart Quiz</button>
+   
             <p class="sores">Correct Answers <span id="score">0</span></p>
             <p class="sores">Incorrect Answers <span id="Incorrect">0</span></p>
-            
+        </div>
+        
         </div>
 
 
