@@ -46,7 +46,7 @@ function startQuiz() {
     username = document.getElementById('username').value.trim(); 
     if (username === "") { 
         alert("Please enter a username.");
-        return; // Exit the function if no username is entered
+        return; 
     }
     usernameSection.classList.add('hidden'); 
     quizSection.classList.remove('hidden'); 
@@ -55,42 +55,46 @@ function startQuiz() {
 }
 
 
-// Function to show the next question
+//  Show the next question function
 function showNextQuestion() {
-    if (currentQuestionIndex >= quizData.length) { // Check if all questions have been answered
-        endQuiz(); // End the quiz if all questions are answered
-        return; // Exit the function
+    if (currentQuestionIndex >= quizData.length) { 
+        endQuiz();
+        return;
     }
 
-    feedbackElement.innerHTML = ''; // Clear any previous feedback
-    const currentQuestion = quizData[currentQuestionIndex]; // Get the current question
-    questionElement.innerText = currentQuestion.question; // Display the current question
-    choicesElement.innerHTML = ''; // Clear previous choices
-    currentQuestion.choices.forEach(choice => { // Loop through the choices
-        const button = document.createElement('button'); // Create a button for each choice
-        button.innerText = choice; // Set the button text to the choice
-        button.addEventListener('click', () => selectAnswer(choice)); // Add an event listener to the button
-        choicesElement.appendChild(button); // Append the button to the choices element
+    feedbackElement.innerHTML = ''; 
+    const currentQuestion = quizData[currentQuestionIndex]; 
+    questionElement.innerText = currentQuestion.question; 
+    choicesElement.innerHTML = ''; 
+    currentQuestion.choices.forEach(choice => { 
+        const button = document.createElement('button'); 
+        button.innerText = choice; 
+        button.addEventListener('click', () => selectAnswer(choice)); 
+        choicesElement.appendChild(button); 
     });
 }
 
 
 // Answer selection function
 function selectAnswer(choice) {
-    const currentQuestion = quizData[currentQuestionIndex]; // Get the current question
-    if (choice === currentQuestion.correct) { // Check if the selected choice is correct
-        score++; // Increment the score
+    const currentQuestion = quizData[currentQuestionIndex]; 
+    if (choice === currentQuestion.correct) { 
+        score++;
         feedbackElement.innerHTML = `Correct! <img src="${currentQuestion.image}" alt="correct image">`; // Display correct feedback with image
     } else {
         feedbackElement.innerHTML = `Incorrect! The correct answer was ${currentQuestion.correct}. <img src="${currentQuestion.image}" alt="incorrect image">`; // Display incorrect feedback with image
     }
-    scoreElement.innerText = score; // Update the score display
-    currentQuestionIndex++; // Move to the next question
-    nextQuestionButton.style.display = 'block'; // Show the next question button
+    scoreElement.innerText = score; 
+    currentQuestionIndex++; 
+    nextQuestionButton.style.display = 'block'; 
 }
 
-function endQuiz() {
 
+// End the quiz function
+function endQuiz() {
+    quizSection.classList.add('hidden');
+    resultSection.classList.remove('hidden'); 
+    finalScoreElement.innerText = `${username}, your final score is ${score} out of ${quizData.length}.`; // Display the final score
 }
 
 function restartQuiz() {
