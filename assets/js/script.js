@@ -1,4 +1,26 @@
 
+// Array holding the quiz questions, choices, correct answers, and associated images
+const quizData = [
+    {
+        question: "What is the capital of Ireland?",
+        choices: ["New York", "Dublin", "Paris", "Abuja"],
+        correct: "Dublin",
+        image: "path/to/paris.jpg"
+    },
+    {
+        question: "Who wrote romeo and juliet?",
+        choices: ["Williams Shakespeare ", "J.K. Rowling", "Mark Twain", "kenneth hegan"],
+        correct: "Williams Shakespeare",
+        image: "path/to/book.jpg"
+    },
+   
+];
+
+// Variables to keep track of the current question index, score, and username
+let currentQuestionIndex = 0;
+let score = 0;
+let username = "";
+
 // Dom element for quiz section
 const usernameSection = document.getElementById('username-section');
 const quizSection = document.getElementById('quiz-section');
