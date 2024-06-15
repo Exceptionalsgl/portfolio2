@@ -1,27 +1,25 @@
-
-// Array holding the quiz questions, choices, correct answers, and associated images
+// Array holding the quiz questions, answers and images
 const quizData = [
     {
         question: "What is the capital of Ireland?",
         choices: ["New York", "Dublin", "Paris", "Abuja"],
         correct: "Dublin",
-        image: "path/to/paris.jpg"
+        image: "path/to/dublin.jpg"
     },
     {
         question: "Who wrote romeo and juliet?",
-        choices: ["Williams Shakespeare ", "J.K. Rowling", "Mark Twain", "kenneth hegan"],
+        choices: ["Williams Shakespeare", "J.K. Rowling", "Mark Twain", "kenneth hegan"],
         correct: "Williams Shakespeare",
         image: "path/to/book.jpg"
     },
-   
 ];
 
-// Variables to keep track of the current question index, score, and username
+// Variables to keep track of questions and username
 let currentQuestionIndex = 0;
 let score = 0;
 let username = "";
 
-// Dom element for quiz section
+// DOM elements for quiz section
 const usernameSection = document.getElementById('username-section');
 const quizSection = document.getElementById('quiz-section');
 const resultSection = document.getElementById('result-section');
@@ -34,7 +32,6 @@ const startQuizButton = document.getElementById('start-quiz');
 const nextQuestionButton = document.getElementById('next-question');
 const restartQuizButton = document.getElementById('restart-quiz');
 const greetingElement = document.getElementById('greeting');
-
 
 // Event listeners for click buttons
 startQuizButton.addEventListener('click', startQuiz);
@@ -50,12 +47,15 @@ function startQuiz() {
     }
     usernameSection.classList.add('hidden'); 
     quizSection.classList.remove('hidden'); 
-    greetingElement.innerText = `Hello, ${username}! Good luck with the quiz.`; // Display a greeting message
+    greetingElement.innerText = `Hello, ${username}! Good luck with the quiz.`; 
+    currentQuestionIndex = 0; 
+    score = 0; 
+    scoreElement.innerText = score; 
+    nextQuestionButton.style.display = 'none'; // Ensure the next question button is hidden
     showNextQuestion(); 
 }
 
-
-//  Show the next question function
+// Function to show the next question
 function showNextQuestion() {
     if (currentQuestionIndex >= quizData.length) { 
         endQuiz();
@@ -74,29 +74,37 @@ function showNextQuestion() {
     });
 }
 
-
-// Answer selection function
+// Function to handle answer selection
 function selectAnswer(choice) {
     const currentQuestion = quizData[currentQuestionIndex]; 
     if (choice === currentQuestion.correct) { 
         score++;
-        feedbackElement.innerHTML = `Correct! <img src="${currentQuestion.image}" alt="correct image">`; // Display correct feedback with image
+        feedbackElement.innerHTML = `Correct! <img src="${currentQuestion.image}" alt="correct image">`; 
     } else {
-        feedbackElement.innerHTML = `Incorrect! The correct answer was ${currentQuestion.correct}. <img src="${currentQuestion.image}" alt="incorrect image">`; // Display incorrect feedback with image
+        feedbackElement.innerHTML = `Incorrect! The correct answer was ${currentQuestion.correct}. <img src="${currentQuestion.image}" alt="incorrect image">`; 
     }
     scoreElement.innerText = score; 
     currentQuestionIndex++; 
     nextQuestionButton.style.display = 'block'; 
 }
 
-
-// End the quiz function
+// Function to end the quiz
 function endQuiz() {
     quizSection.classList.add('hidden');
     resultSection.classList.remove('hidden'); 
-    finalScoreElement.innerText = `${username}, your final score is ${score} out of ${quizData.length}.`; // Display the final score
+    finalScoreElement.innerText = `${username}, your final score is ${score} out of ${quizData.length}.`; 
 }
 
+// Function to restart the quiz
 function restartQuiz() {
-    
+    currentQuestionIndex = 0;
+    score = 0; 
+    username = ""; 
+    scoreElement.innerText = score;
+    usernameSection.classList.remove('hidden'); 
+    resultSection.classList.add('hidden'); 
+    quizSection.classList.add('hidden'); 
+    document.getElementById('username').value = ''; 
+    nextQuestionButton.style.display = 'none'; // Ensure the next question button is hidden
+    feedbackElement.innerHTML = ''; // Clear feedback on restart
 }
