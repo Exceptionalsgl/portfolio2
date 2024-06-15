@@ -74,12 +74,19 @@ function showNextQuestion() {
     });
 }
 
-function showNextQuestion() {
-   
-}
 
+// Answer selection function
 function selectAnswer(choice) {
-   
+    const currentQuestion = quizData[currentQuestionIndex]; // Get the current question
+    if (choice === currentQuestion.correct) { // Check if the selected choice is correct
+        score++; // Increment the score
+        feedbackElement.innerHTML = `Correct! <img src="${currentQuestion.image}" alt="correct image">`; // Display correct feedback with image
+    } else {
+        feedbackElement.innerHTML = `Incorrect! The correct answer was ${currentQuestion.correct}. <img src="${currentQuestion.image}" alt="incorrect image">`; // Display incorrect feedback with image
+    }
+    scoreElement.innerText = score; // Update the score display
+    currentQuestionIndex++; // Move to the next question
+    nextQuestionButton.style.display = 'block'; // Show the next question button
 }
 
 function endQuiz() {
