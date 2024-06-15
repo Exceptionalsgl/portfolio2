@@ -18,6 +18,10 @@ const quizData = [
 let currentQuestionIndex = 0;
 let score = 0;
 let username = "";
+let wrong = 0;
+let right = 0;
+
+
 
 // DOM elements for quiz section
 const usernameSection = document.getElementById('username-section');
@@ -32,6 +36,9 @@ const startQuizButton = document.getElementById('start-quiz');
 const nextQuestionButton = document.getElementById('next-question');
 const restartQuizButton = document.getElementById('restart-quiz');
 const greetingElement = document.getElementById('greeting');
+const correctElement = document.getElementById('right');
+const incorrectElement = document.getElementById('wrong');
+
 
 // Event listeners for click buttons
 startQuizButton.addEventListener('click', startQuiz);
@@ -51,7 +58,11 @@ function startQuiz() {
     currentQuestionIndex = 0; 
     score = 0; 
     scoreElement.innerText = score; 
-    nextQuestionButton.style.display = 'none'; // Ensure the next question button is hidden
+    wrong = 0;
+    incorrectElement.innerText = wrong; 
+    right = 0;
+    correctElement.innerText = right; 
+    nextQuestionButton.style.display = 'none'; 
     showNextQuestion(); 
 }
 
@@ -79,11 +90,15 @@ function selectAnswer(choice) {
     const currentQuestion = quizData[currentQuestionIndex]; 
     if (choice === currentQuestion.correct) { 
         score++;
+        right++; 
         feedbackElement.innerHTML = `Correct! <img src="${currentQuestion.image}" alt="correct image">`; 
     } else {
-        feedbackElement.innerHTML = `Incorrect! The correct answer was ${currentQuestion.correct}. <img src="${currentQuestion.image}" alt="incorrect image">`; 
+        feedbackElement.innerHTML = `Incorrect! The correct answer was ${currentQuestion.correct}. <img src="${currentQuestion.image}" alt="incorrect image">`;
+        wrong++; 
     }
     scoreElement.innerText = score; 
+    incorrectElement.innerText = wrong; 
+    correctElement.innerText = right; 
     currentQuestionIndex++; 
     nextQuestionButton.style.display = 'block'; 
 }
@@ -100,6 +115,8 @@ function restartQuiz() {
     currentQuestionIndex = 0;
     score = 0; 
     username = ""; 
+    wrong = 0;
+    right = 0;
     scoreElement.innerText = score;
     usernameSection.classList.remove('hidden'); 
     resultSection.classList.add('hidden'); 
@@ -108,3 +125,5 @@ function restartQuiz() {
     nextQuestionButton.style.display = 'none'; // Ensure the next question button is hidden
     feedbackElement.innerHTML = ''; // Clear feedback on restart
 }
+
+
