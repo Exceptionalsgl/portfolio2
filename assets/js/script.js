@@ -55,6 +55,25 @@ function startQuiz() {
 }
 
 
+// Function to show the next question
+function showNextQuestion() {
+    if (currentQuestionIndex >= quizData.length) { // Check if all questions have been answered
+        endQuiz(); // End the quiz if all questions are answered
+        return; // Exit the function
+    }
+
+    feedbackElement.innerHTML = ''; // Clear any previous feedback
+    const currentQuestion = quizData[currentQuestionIndex]; // Get the current question
+    questionElement.innerText = currentQuestion.question; // Display the current question
+    choicesElement.innerHTML = ''; // Clear previous choices
+    currentQuestion.choices.forEach(choice => { // Loop through the choices
+        const button = document.createElement('button'); // Create a button for each choice
+        button.innerText = choice; // Set the button text to the choice
+        button.addEventListener('click', () => selectAnswer(choice)); // Add an event listener to the button
+        choicesElement.appendChild(button); // Append the button to the choices element
+    });
+}
+
 function showNextQuestion() {
    
 }
