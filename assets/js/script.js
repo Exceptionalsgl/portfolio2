@@ -41,9 +41,19 @@ startQuizButton.addEventListener('click', startQuiz);
 nextQuestionButton.addEventListener('click', showNextQuestion);
 restartQuizButton.addEventListener('click', restartQuiz);
 
+// Function to start the quiz
 function startQuiz() {
-   
+    username = document.getElementById('username').value.trim(); 
+    if (username === "") { 
+        alert("Please enter a username.");
+        return; // Exit the function if no username is entered
+    }
+    usernameSection.classList.add('hidden'); 
+    quizSection.classList.remove('hidden'); 
+    greetingElement.innerText = `Hello, ${username}! Good luck with the quiz.`; // Display a greeting message
+    showNextQuestion(); 
 }
+
 
 function showNextQuestion() {
    
