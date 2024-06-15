@@ -2,7 +2,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: hsl(309, 29%, 86%);
+    background-color:#F4B942;
     color: #333;
     margin: 0;
     padding: 0;
@@ -13,7 +13,7 @@ body {
 }
 
 .container {
-    background-color: #fff;
+    background-color: #BFACB5;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -38,7 +38,7 @@ button {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    background-color: #5cb85c;
+    background-color: #2230b0;
     color: white;
     cursor: pointer;
     margin: 10px 0;
@@ -78,4 +78,30 @@ button:hover {
     display: none;
 }
 
+#start-quiz {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4cae4c;
+    color: white;
+    cursor: pointer;
+    margin: 10px 0
+}
 
+#start-quiz:hover {
+    background-color:#5bc0de;
+}
+
+#restart-quiz {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: hsl(293, 39%, 49%);
+    color: white;
+    cursor: pointer;
+    margin: 10px 0
+}
+
+#restart-quiz:hover {
+    background-color:#5bc0de;
+}
